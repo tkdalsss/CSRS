@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>강의실 자리 예약 시스템 - 마이페이지</title>
+</head>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- Custom styles for this template -->
+<link href="/css/jumbotron-narrow.css" rel="stylesheet">
+<body>
+    <div class="container">
+        <div th:replace="~{fragments/bodyHeader::bodyHeader}" />
+        <!-- 개인 정보 -->
+        <div>
+            <p th:text="${member.name}"></p>
+            <p th:text="${member.studentId}"></p>
+            <p th:text="${member.major}"></p>
+        </div>
+        <br/>
+        <!-- 수업 정보 -->
+        <div>
+
+        </div>
+        <br/>
+        <div th:replace="~{fragments/footer::footer}" />
+    </div>
+</body>
+</html>
