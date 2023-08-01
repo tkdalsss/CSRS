@@ -21,6 +21,9 @@
         <!-- 수업 정보 -->
         <div>
             <p>수업 정보</p>
+            <ul th:each="name : ${student_lecture}">
+                <li th:text="${name.className}"></li>
+            </ul>
         </div>
         <br/>
         <div th:replace="~{fragments/footer::footer}" />

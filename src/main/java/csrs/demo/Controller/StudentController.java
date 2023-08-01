@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +44,7 @@ public class StudentController {
     @GetMapping("/my-page")
     public String myPage(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Student loginMember,
                          Model model){
+//        model.addAttribute("student_lecture", loginMember.getLectures());
         model.addAttribute("member", loginMember);
         return "myPage";
     }

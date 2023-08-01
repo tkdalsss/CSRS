@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/home")
+@Slf4j
 public class HomeController {
 
     private final StudentService studentService;
@@ -58,14 +60,14 @@ public class HomeController {
 
         HttpSession session = request.getSession();
 
-        // Edit
+        // Admin login
         Admin admin = adminService.loginAdmin(loginForm.getStudentId(), loginForm.getPassword());
         if (admin != null){
-//            Admin admin = Admin.createAdmin(loginForm.getStudentId(), loginForm.getPassword());
             session.setAttribute(SessionConst.ADMIN, admin);
             return "redirect:/home/admin";
         }
 
+        // Member login
         Student loginMember = studentService.login(loginForm.getStudentId(), loginForm.getPassword());
         if (loginMember == null) {
             result.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
@@ -73,6 +75,12 @@ public class HomeController {
         }
 
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+
+//        int idx = request.getRequestURI().indexOf("=");
+//        log.info("{}", idx);
+//        redirectURL = request.getRequestURI().substring(idx+1);
+//        redirectURL = request.getRequestURI();
+//        log.info(redirectURL);
 
         return "redirect:/home/member";
     }
