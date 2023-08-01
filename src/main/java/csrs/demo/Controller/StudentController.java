@@ -40,4 +40,11 @@ public class StudentController {
         return "redirect:/home/home";
     }
 
+    @GetMapping("/my-page")
+    public String myPage(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Student loginMember,
+                         Model model){
+        model.addAttribute("member", loginMember);
+        return "myPage";
+    }
+
 }

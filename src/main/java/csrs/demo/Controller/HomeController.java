@@ -15,8 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Objects;
-
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/home")
@@ -61,8 +59,9 @@ public class HomeController {
         HttpSession session = request.getSession();
 
         // Edit
-        if (adminService.findById(loginForm.getStudentId())){
-            Admin admin = Admin.createAdmin(loginForm.getStudentId(), loginForm.getPassword());
+        Admin admin = adminService.loginAdmin(loginForm.getStudentId(), loginForm.getPassword());
+        if (admin != null){
+//            Admin admin = Admin.createAdmin(loginForm.getStudentId(), loginForm.getPassword());
             session.setAttribute(SessionConst.ADMIN, admin);
             return "redirect:/home/admin";
         }
@@ -90,10 +89,4 @@ public class HomeController {
         return "redirect:/home";
     }
 
-    @GetMapping("/mypage")
-    public String mypage(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Student loginMember,
-                         Model model){
-        model.addAttribute("member", loginMember);
-        return "mypage";
-    }
 }

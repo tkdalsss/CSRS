@@ -23,16 +23,17 @@
             <input type="text" th:field="*{className}" class="form-control" placeholder="강의실 이름을 입력하세요">
           </div>
           <div class="form-group">
-              <label th:for="${classroom}">강의실</label>
-              <select name="classroomNum" class="form-control">
+              <label th:for="classroomNum">강의실</label>
+<!--              <select name="classroomNum" class="form-control">-->
+              <select th:name="crNum" class="form-control">
                   <option value="">강의실 선택</option>
                   <option th:each="cr: ${classroom}"
-                          th:value="${cr}"
-                          th:text="${cr.getCrNum()}"></option>
+                          th:value="${cr?.crNum}"
+                          th:text="${cr?.crNum}"></option>
               </select>
           </div>
           <div class="form-group">
-            <label th:for="crName">강의 정원</label>
+            <label th:for="maximum">강의 정원</label>
             <input type="number" th:field="*{maximum}" class="form-control" placeholder="해당 강의 정원을 입력하세요">
           </div>
           <div class="form-group">

@@ -1,5 +1,6 @@
 package csrs.demo.Configuration.Interceptor;
 
+import com.mysql.cj.Session;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -17,11 +18,8 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         log.info("인증 체크 인터셉터 실행 {}", requestURI);
 
         HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute(SessionConst.LOGIN_MEMBER) == null){
-            // 관리자 로그인 이면 PASS
-            if (session.getAttribute(SessionConst.ADMIN) != null) {
-                return true;
-            }
+        if (session == null || (session.getAttribute(SessionConst.LOGIN_MEMBER) == null
+                && session.getAttribute(SessionConst.ADMIN) == null)){
             log.info("미인증 사용자 요청");
             response.sendRedirect("/home/login?redirectURL="+requestURI);
             return false;

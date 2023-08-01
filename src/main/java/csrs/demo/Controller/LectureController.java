@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,11 +28,11 @@ public class LectureController {
     }
 
     @PostMapping("/new")
-    public String createLecture(Lecture lc) {
+    public String createLecture(Lecture lc, @RequestParam int crNum) {
 
-        Lecture lecture = Lecture.CreateLecture(lc.getClassName(), lc.getClassroomNum(), lc.getMaximum(), lc.getStartTime(), lc.getEndTime());
+        Lecture lecture = Lecture.CreateLecture(lc.getClassName(), crNum, lc.getMaximum(), lc.getStartTime(), lc.getEndTime());
         ls.save(lecture);
 
-        return "redirect:/home/member";
+        return "redirect:/home/admin";
     }
 }

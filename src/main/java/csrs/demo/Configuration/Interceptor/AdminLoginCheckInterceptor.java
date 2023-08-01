@@ -12,12 +12,12 @@ public class AdminLoginCheckInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String requestURI = request.getRequestURI();
-        log.info("인증 체크 인터셉터 실행 {}", requestURI);
+        log.info("관리자 인증 체크 인터셉터 실행 {}", requestURI);
 
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute(SessionConst.ADMIN) == null){
             log.info("미인증 관리자 요청");
-            response.sendRedirect("/home/login?redirectURL="+requestURI);
+//            response.sendRedirect("/home/login?redirectURL="+requestURI);
             return false;
         }
 
