@@ -1,50 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>강의실 자리 예약 시스템 - 수업 추가</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>강의실 자리 예약 시스템 - 수업 추가</title>
 </head>
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!-- Custom styles for this template -->
 <link href="/css/jumbotron-narrow.css" rel="stylesheet">
 <style>
-  th, td{
-    text-align: center;
-  }
+    th, td {
+        text-align: center;
+    }
 </style>
 <body>
-  <div class="container">
-    <div th:replace="~{fragments/bodyHeader::bodyHeader}" />
-      <h2>수업 리스트</h2>
-      <form role="form" action="/lecture/register" method="post">
+<div class="container">
+    <div th:replace="~{fragments/bodyHeader::bodyHeader}"/>
+    <h2>수업 리스트</h2>
+    <form role="form" action="/lecture/register" method="post">
         <table class="table table-striped">
-          <thead>
-          <tr>
-            <th>Select</th>
-            <th>강의명</th>
-            <th>강의실</th>
-            <th>강의 요일</th>
-            <th>강의 시작시간</th>
-            <th>강의 종료시간</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr th:each="lecture : ${lectures}">
-            <td>
-              <input type="checkbox" th:value="${lecture.id}" th:name="lectureId">
-            </td>
-            <td th:text="${lecture.className}"></td>
-            <td th:text="${lecture.classroomNum}"></td>
-            <td></td>
-            <td th:text="${lecture.startTime}"></td>
-            <td th:text="${lecture.endTime}"></td>
-          </tr>
-          </tbody>
+            <thead>
+            <tr>
+                <th>Select</th>
+                <th>강의명</th>
+                <th>강의실</th>
+                <th>강의 요일</th>
+                <th>강의 시작시간</th>
+                <th>강의 종료시간</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="lecture : ${lectures}">
+                <td>
+                    <input type="checkbox" th:value="${lecture.id}" th:name="lectureId">
+                </td>
+                <td th:text="${lecture.className}"></td>
+                <td th:text="${lecture.classroomNum}"></td>
+                <td>
+                    <p th:text="${lecture.day1}"></p>
+                    <p th:text="${lecture.day2}"></p>
+                </td>
+                <td th:text="${lecture.startTime}"></td>
+                <td th:text="${lecture.endTime}"></td>
+            </tr>
+            </tbody>
         </table>
         <button class="btn btn-secondary" type="submit">추가하기</button>
-      </form>
-    <div th:replace="~{fragments/footer::footer}" />
-  </div>
+    </form>
+    <div th:replace="~{fragments/footer::footer}"/>
+</div>
 </body>
 </html>

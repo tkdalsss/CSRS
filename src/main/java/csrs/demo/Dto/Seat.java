@@ -7,7 +7,8 @@ import lombok.Getter;
 @Getter
 public class Seat {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
 //    @ManyToOne(fetch = FetchType.LAZY)

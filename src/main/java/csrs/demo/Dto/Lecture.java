@@ -10,31 +10,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class Lecture {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     private String className;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "classroom_id")
-//    private Classroom classroom;
-
     private int classroomNum;
     private int maximum;
+    private Day day1;
+    private Day day2;
     private LocalTime startTime;
     private LocalTime endTime;
 
-//    @OneToMany(mappedBy = "lecture", fetch = FetchType.LAZY)
-//    private List<Student> students = new ArrayList<>();
-
-    public static Lecture CreateLecture(String className, int num, int max, LocalTime st, LocalTime et) {
+    public static Lecture CreateLecture(String className, int num, int max, Day day1, Day day2, LocalTime st, LocalTime et) {
         Lecture lecture = new Lecture();
         lecture.setClassName(className);
         lecture.setClassroomNum(num);
         lecture.setMaximum(max);
+        lecture.setDay1(day1);
+        lecture.setDay2(day2);
         lecture.setStartTime(st);
         lecture.setEndTime(et);
 

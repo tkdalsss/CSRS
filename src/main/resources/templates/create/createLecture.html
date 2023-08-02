@@ -1,53 +1,74 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>관리자 - 강의 생성</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>관리자 - 강의 생성</title>
 </head>
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!-- Custom styles for this template -->
 <link href="/css/jumbotron-narrow.css" rel="stylesheet">
 <style>
-  .fieldError{
-    border-color: #bd2130;
-    text-decoration-color: #bd2130;
-  }
+    .fieldError {
+        border-color: #bd2130;
+        text-decoration-color: #bd2130;
+    }
 </style>
 <body>
-    <div class="container">
-        <div th:replace="~{fragments/bodyHeader::bodyHeader}" />
-        <form role="form" action="/lecture/new" th:object="${lecture}" method="post">
-          <div class="form-group">
+<div class="container">
+    <div th:replace="~{fragments/bodyHeader::bodyHeader}"/>
+    <form role="form" action="/lecture/new" th:object="${lecture}" method="post">
+        <div class="form-group">
             <label th:for="className">강의 이름</label>
             <input type="text" th:field="*{className}" class="form-control" placeholder="강의실 이름을 입력하세요">
-          </div>
-          <div class="form-group">
-              <label th:for="classroomNum">강의실</label>
-<!--              <select name="classroomNum" class="form-control">-->
-              <select th:name="crNum" class="form-control">
-                  <option value="">강의실 선택</option>
-                  <option th:each="cr: ${classroom}"
-                          th:value="${cr?.crNum}"
-                          th:text="${cr?.crNum}"></option>
-              </select>
-          </div>
-          <div class="form-group">
+        </div>
+        <div class="form-group">
+            <label th:for="classroomNum">강의실</label>
+            <!--              <select name="classroomNum" class="form-control">-->
+            <select th:name="crNum" class="form-control">
+                <option value="">강의실 선택</option>
+                <option th:each="cr: ${classroom}"
+                        th:value="${cr?.crNum}"
+                        th:text="${cr?.crNum}"></option>
+            </select>
+        </div>
+        <div class="form-group">
             <label th:for="maximum">강의 정원</label>
             <input type="number" th:field="*{maximum}" class="form-control" placeholder="해당 강의 정원을 입력하세요">
-          </div>
-          <div class="form-group">
+        </div>
+        <div class="form-group" style="display:flex">
+            <div style="margin-right: 50px">
+                <label th:for="day1">강의 요일 1</label>
+                <select th:field="*{day1}" class="form-control">
+                    <option value="">강의 요일1 선택</option>
+                    <option th:each="day : ${T(csrs.demo.Dto.Day).values()}"
+                            th:value="${day}"
+                            th:text="${day}"></option>
+                </select>
+            </div>
+            <div>
+                <label th:for="day2">강의 요일 2</label>
+                <select th:field="*{day2}" class="form-control">
+                    <option value="">강의 요일2 선택</option>
+                    <option th:each="day : ${T(csrs.demo.Dto.Day).values()}"
+                            th:value="${day}"
+                            th:text="${day}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
             <label th:for="startTime">강의 시작 시간</label>
             <input type="time" th:field="*{startTime}" class="form-control" placeholder="강의 시작 시간을 선택하세요">
-          </div>
-          <div class="form-group">
-            <label th:for="endTime">강의 시작 시간</label>
+        </div>
+        <div class="form-group">
+            <label th:for="endTime">강의 종료 시간</label>
             <input type="time" th:field="*{endTime}" class="form-control" placeholder="강의 종료 시간을 선택하세요">
-          </div>
-          <button type="submit" class="btn btn-secondary">저장</button>
-        </form>
-        <br/>
-        <div th:replace="~{fragments/footer::footer}" />
-    </div>
+        </div>
+        <button type="submit" class="btn btn-secondary">저장</button>
+    </form>
+    <br/>
+    <div th:replace="~{fragments/footer::footer}"/>
+</div>
 </body>
 </html>

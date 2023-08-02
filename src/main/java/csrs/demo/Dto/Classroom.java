@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class Classroom {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     private int crNum; // 강의실 이름 ex) 3183
@@ -25,7 +27,7 @@ public class Classroom {
 //    @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
 //    private List<Lecture> lectures = new ArrayList<>();
 
-    public static Classroom createClassroom(int crNum, String crName){
+    public static Classroom createClassroom(int crNum, String crName) {
         Classroom cr = new Classroom();
         cr.setCrNum(crNum);
         cr.setCrName(crName);

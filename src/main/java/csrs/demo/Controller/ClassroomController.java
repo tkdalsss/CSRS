@@ -17,7 +17,7 @@ public class ClassroomController {
     private final ClassroomService crService;
 
     @GetMapping("/new")
-    public String createClassroom(Model model){
+    public String createClassroom(Model model) {
         model.addAttribute("classroom", new Classroom());
         return "/create/createClassroom";
     }
@@ -28,6 +28,6 @@ public class ClassroomController {
         Classroom cr = Classroom.createClassroom(classroom.getCrNum(), classroom.getCrName());
         crService.save(cr);
 
-        return "redirect:/home/member";
+        return "redirect:/home/admin";
     }
 }

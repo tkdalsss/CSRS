@@ -5,7 +5,8 @@ import jakarta.persistence.*;
 @Entity
 public class StudentLecture {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     @ManyToOne

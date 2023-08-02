@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class Student {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     private String name;
@@ -21,14 +23,14 @@ public class Student {
     private Major major;
     private LocalDateTime createdAt;
 
-//    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    //    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
 //    private List<Lecture> lectures = new ArrayList<>();
     @ManyToMany
     @JoinTable(name = "StudentLecture", joinColumns = @JoinColumn(name = "student_id"),
-    inverseJoinColumns = @JoinColumn(name = "lecture_id"))
+            inverseJoinColumns = @JoinColumn(name = "lecture_id"))
     private List<Lecture> lectures = new ArrayList<Lecture>();
 
-    public static Student createStudent(String name, String studentId, String password, Major major){
+    public static Student createStudent(String name, String studentId, String password, Major major) {
         Student student = new Student();
 
         student.setName(name);
