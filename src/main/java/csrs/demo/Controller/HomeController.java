@@ -76,12 +76,6 @@ public class HomeController {
 
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
-//        int idx = request.getRequestURI().indexOf("=");
-//        log.info("{}", idx);
-//        redirectURL = request.getRequestURI().substring(idx+1);
-//        redirectURL = request.getRequestURI();
-//        log.info(redirectURL);
-
         return "redirect:/home/member";
     }
 
