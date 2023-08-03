@@ -1,4 +1,4 @@
-package csrs.demo.Dto;
+package csrs.demo.Dto.Enum;
 
 public enum Reservation {
     completion, empty

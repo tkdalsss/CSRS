@@ -19,13 +19,10 @@ public class Classroom {
     private int crNum; // 강의실 이름 ex) 3183
     private String crName; // 강의실 번호 ex) 401-3183
 
-    // 자리
-//    @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
-//    private List<Seat> seats = new ArrayList<>();
-
-    // 수업
-//    @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
-//    private List<Lecture> lectures = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "ClassroomLecture", joinColumns = @JoinColumn(name = "classroom_id"),
+            inverseJoinColumns = @JoinColumn(name = "lecture_id"))
+    private List<Lecture> lectures = new ArrayList<>();
 
     public static Classroom createClassroom(int crNum, String crName) {
         Classroom cr = new Classroom();

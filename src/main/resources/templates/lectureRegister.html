@@ -33,7 +33,7 @@
             <tbody>
             <tr th:each="lecture : ${lectures}">
                 <td>
-                    <input type="checkbox" th:value="${lecture.id}" th:name="lectureId">
+                    <input type="radio" th:value="${lecture.id}" th:name="lectureId">
                 </td>
                 <td th:text="${lecture.className}"></td>
                 <td th:text="${lecture.classroomNum}"></td>

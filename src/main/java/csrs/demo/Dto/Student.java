@@ -1,5 +1,6 @@
 package csrs.demo.Dto;
 
+import csrs.demo.Dto.Enum.Major;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,12 +24,10 @@ public class Student {
     private Major major;
     private LocalDateTime createdAt;
 
-    //    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
-//    private List<Lecture> lectures = new ArrayList<>();
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "StudentLecture", joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "lecture_id"))
-    private List<Lecture> lectures = new ArrayList<Lecture>();
+    private List<Lecture> lectures = new ArrayList<>();
 
     public static Student createStudent(String name, String studentId, String password, Major major) {
         Student student = new Student();

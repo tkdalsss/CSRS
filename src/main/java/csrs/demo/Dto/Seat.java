@@ -1,5 +1,6 @@
 package csrs.demo.Dto;
 
+import csrs.demo.Dto.Enum.Reservation;
 import jakarta.persistence.*;
 import lombok.Getter;
 

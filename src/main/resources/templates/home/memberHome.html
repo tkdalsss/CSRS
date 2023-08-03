@@ -5,24 +5,25 @@
     <title>강의실 자리 예약 시스템</title>
 </head>
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!-- Custom styles for this template -->
 <link href="/css/jumbotron-narrow.css" rel="stylesheet">
 <body>
-    <div class="container">
-        <div class="jumbotron" >
-            <h2>강의실 자리 예약시스템</h2>
-<!--            <p class="lead"></p>-->
-            <div>
-<!--                <p class="mb-3" th:text="|로그인 : ${#object.session.loginMember.studentId}|"></p>-->
-                <p class="mb-3" th:text="|로그인 : ${member.studentId}|"></p>
-                <a class="btn btn-lg btn-secondary" href="/home/logout">Logout</a>
-            </div>
-            <div>
-                <a class="btn btn-lg btn-secondary" href="/student/my-page">마이페이지</a>
-                <a class="btn btn-lg btn-secondary" href="">강의실 좌석 예약하기</a>
-            </div>
+<div class="container">
+    <div class="jumbotron">
+        <h2>강의실 자리 예약시스템</h2>
+        <!--            <p class="lead"></p>-->
+        <div>
+            <!--                <p class="mb-3" th:text="|로그인 : ${#object.session.loginMember.studentId}|"></p>-->
+            <p class="mb-3" th:text="|로그인 : ${member.studentId}|"></p>
+            <a class="btn btn-lg btn-secondary" href="/home/logout">Logout</a>
+        </div>
+        <div>
+            <a class="btn btn-lg btn-secondary" href="/student/my-page">마이페이지</a>
+            <a class="btn btn-lg btn-secondary" href="/reservation/home">강의실 좌석 예약하기</a>
         </div>
     </div>
+</div>
 </body>
 </html>

@@ -1,8 +1,7 @@
 package csrs.demo.Dto.Form;
 
-import csrs.demo.Dto.Major;
+import csrs.demo.Dto.Enum.Major;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data

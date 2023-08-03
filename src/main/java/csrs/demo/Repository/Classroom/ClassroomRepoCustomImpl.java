@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import static csrs.demo.Dto.QClassroom.*;
+
 @RequiredArgsConstructor
 public class ClassroomRepoCustomImpl implements ClassroomRepoCustom {
 
@@ -15,7 +17,14 @@ public class ClassroomRepoCustomImpl implements ClassroomRepoCustom {
 
     @Override
     public List<Classroom> classrooms() {
-        return factory.selectFrom(QClassroom.classroom)
+        return factory.selectFrom(classroom)
                 .fetch();
+    }
+
+    @Override
+    public Classroom findById(int num) {
+        return factory.selectFrom(classroom)
+                .where(classroom.crNum.eq(num))
+                .fetchOne();
     }
 }

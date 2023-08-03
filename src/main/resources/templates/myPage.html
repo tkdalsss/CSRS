@@ -4,30 +4,60 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>강의실 자리 예약 시스템 - 마이페이지</title>
 </head>
+<style>
+    th, td {
+        text-align: center;
+    }
+</style>
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!-- Custom styles for this template -->
 <link href="/css/jumbotron-narrow.css" rel="stylesheet">
 <body>
-    <div class="container">
-        <div th:replace="~{fragments/bodyHeader::bodyHeader}" />
-        <!-- 개인 정보 -->
-        <div>
-            <p th:text="${member.name}"></p>
-            <p th:text="${member.studentId}"></p>
-            <p th:text="${member.major}"></p>
-        </div>
-        <br/>
-        <!-- 수업 정보 -->
-        <div>
-            <p>수업 정보</p>
-            <button class="btn btn-secondary" type="button" th:href="@{/lecture/register}">수업 추가</button>
-<!--            <ul th:each="name : ${student_lecture}">-->
-<!--                <li th:text="${name.className}"></li>-->
-<!--            </ul>-->
-        </div>
-        <br/>
-        <div th:replace="~{fragments/footer::footer}" />
+<div class="container">
+    <div th:replace="~{fragments/bodyHeader::bodyHeader}"/>
+    <!-- 개인 정보 -->
+    <div>
+        <p th:text="${member.name}"></p>
+        <p th:text="${member.studentId}"></p>
+        <p th:text="${member.major}"></p>
     </div>
+    <br/>
+    <!-- 수업 정보 -->
+    <div>
+        <div style="display:flex; margin-bottom: 15px;">
+            <h3>수업 정보</h3>
+            <button class="btn btn-secondary" type="button" th:href="@{/lecture/register}"
+                    style="justify-content: center; margin-left:50px;">수업 추가
+            </button>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>강의명</th>
+                <th>강의실</th>
+                <th>강의 요일</th>
+                <th>강의 시작시간</th>
+                <th>강의 종료시간</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="lecture : ${member.lectures}">
+                <td th:text="${lecture.className}"></td>
+                <td th:text="${lecture.classroomNum}"></td>
+                <td>
+                    <p th:text="${lecture.day1}"></p>
+                    <p th:text="${lecture.day2}"></p>
+                </td>
+                <td th:text="${lecture.startTime}"></td>
+                <td th:text="${lecture.endTime}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br/>
+    <div th:replace="~{fragments/footer::footer}"/>
+</div>
 </body>
 </html>

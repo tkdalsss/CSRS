@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>강의실 자리 예약 시스템 - 예약 현황</title>
+</head>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- Custom styles for this template -->
+<link href="/css/jumbotron-narrow.css" rel="stylesheet">
+<style>
+    .fieldError {
+        border-color: #bd2130;
+        text-decoration-color: #bd2130;
+    }
+</style>
+<body>
+<div class="container">
+    <div th:replace="~{fragments/bodyHeader::bodyHeader}"/>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>예약현황</th>
+            <th>강의명</th>
+            <th>강의실</th>
+            <th>강의 요일</th>
+            <th>강의 시작시간</th>
+            <th>강의 종료시간</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="lecture : ${lectures}">
+            <td>
+                <p th:text="${lecture.maximum}"></p>
+            </td>
+            <td th:text="${lecture.className}"></td>
+            <td th:text="${lecture.classroomNum}"></td>
+            <td>
+                <p th:text="${lecture.day1}"></p>
+                <p th:text="${lecture.day2}"></p>
+            </td>
+            <td th:text="${lecture.startTime}"></td>
+            <td th:text="${lecture.endTime}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:replace="~{fragments/footer::footer}"/>
+</div>
+</body>
+</html>
