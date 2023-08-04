@@ -33,6 +33,7 @@ public class ClassroomController {
         Classroom cr = Classroom.createClassroom(classroom.getCrNum(), classroom.getCrName());
         cs.save(cr);
 
+
         return "redirect:/home/admin";
     }
 

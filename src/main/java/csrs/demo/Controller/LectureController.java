@@ -15,10 +15,8 @@ import java.util.List;
 @RequestMapping("/lecture")
 public class LectureController {
 
-    private final StudentService ss;
     private final LectureService ls;
     private final ClassroomService cs;
-    private final StudentLectureService sls;
     private final ClassroomLectureService cls;
 
     @GetMapping("/new")

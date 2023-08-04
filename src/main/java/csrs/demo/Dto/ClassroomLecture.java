@@ -23,8 +23,8 @@ public class ClassroomLecture {
     private Lecture lc;
 
     @JsonIgnore()
-    @OneToOne(mappedBy = "classroom_lecture")
-    private ReservationLecture rl;
+    @OneToOne(mappedBy = "classroomLecture")
+    private ReservationLecture reservationLecture;
 
     public static ClassroomLecture createClassroomLecture(Classroom cr, Lecture lc) {
         ClassroomLecture cl = new ClassroomLecture();
