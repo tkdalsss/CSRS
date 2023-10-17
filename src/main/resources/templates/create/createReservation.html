@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>관리자 - 날짜별 강의 추가</title>
+</head>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- Custom styles for this template -->
+<link href="/css/jumbotron-narrow.css" rel="stylesheet">
+<body>
+<div class="container">
+    <div th:replace="~{fragments/bodyHeader::bodyHeader}"/>
+    <form role="form" action="/reservation/new" th:object="${reservationLecture}" method="post">
+        <div class="form-group">
+            <label th:for="rlDate">강의 일시</label>
+            <input type="date" th:field="*{rlDate}" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label th:for="classroomLecture">강의 선택</label>
+            <select th:field="${classroomLecture}" class="form-control">
+                <option value="">강의 선택</option>
+                <option th:each="cl : ${classroomLecture}"
+                        th:value="${cl}"
+                        th:text="${cl.lc.className}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label th:for="day">강의 요일</label>
+            <select th:field="${reservationLecture.day}" class="form-control">
+                <option value="">요일 선택</option>
+                <option th:each="day : ${T(csrs.demo.dto.enum.Day).values()}"
+                        th:value="${day}"
+                        th:text="${day}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label th:for="rsv">예약 상태</label>
+            <select th:field="${reservationLecture.rsv}" class="form-control">
+                <option value="">예약 상태</option>
+                <option th:each="rsv : ${T(csrs.demo.dto.Enum.Reservation).values()}"
+                        th:value="${rsv}"
+                        th:text="${rsv}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-secondary">강의추가</button>
+    </form>
+    <br/>
+    <div th:replace="~{fragments/footer::footer}"/>
+</div>
+</body>
+</html>

@@ -42,7 +42,7 @@
                 <label th:for="day1">강의 요일 1</label>
                 <select th:field="*{day1}" class="form-control">
                     <option value="">강의 요일1 선택</option>
-                    <option th:each="day : ${T(csrs.demo.Dto.Enum.Day).values()}"
+                    <option th:each="day : ${T(csrs.demo.dto.Enum.Day).values()}"
                             th:value="${day}"
                             th:text="${day}"></option>
                 </select>
@@ -51,7 +51,7 @@
                 <label th:for="day2">강의 요일 2</label>
                 <select th:field="*{day2}" class="form-control">
                     <option value="">강의 요일2 선택</option>
-                    <option th:each="day : ${T(csrs.demo.Dto.Enum.Day).values()}"
+                    <option th:each="day : ${T(csrs.demo.dto.Enum.Day).values()}"
                             th:value="${day}"
                             th:text="${day}"></option>
                 </select>
