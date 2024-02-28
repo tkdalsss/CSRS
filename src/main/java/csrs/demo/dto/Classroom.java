@@ -14,20 +14,20 @@ public class Classroom {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long classroom_id;
 
-    private int crNum; // 강의실 이름 ex) 3183
-    private String crName; // 강의실 번호 ex) 401-3183
+    private String classroomName;
+    private int capacity;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "ClassroomLecture", joinColumns = @JoinColumn(name = "classroom_id"),
             inverseJoinColumns = @JoinColumn(name = "lecture_id"))
     private List<Lecture> lectures = new ArrayList<>();
 
-    public static Classroom createClassroom(int crNum, String crName) {
+    public static Classroom createClassroom(String crName, int crNum) {
         Classroom cr = new Classroom();
-        cr.setCrNum(crNum);
-        cr.setCrName(crName);
+        cr.setClassroomName(crName);
+        cr.setCapacity(crNum);
         return cr;
     }
 

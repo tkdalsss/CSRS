@@ -1,12 +1,10 @@
 package csrs.demo.dto;
 
-import csrs.demo.dto.Enum.Day;
-import csrs.demo.dto.Enum.Reservation;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.nio.MappedByteBuffer;
 
 @Entity
 @Getter
@@ -17,23 +15,7 @@ public class ReservationLecture {
     @GeneratedValue
     private Long id;
 
-    private Date rlDate;
-
     @OneToOne
-    @JoinColumn(name = "classroom_lecture")
+    @JoinColumn(name = "ClassroomLecture")
     private ClassroomLecture classroomLecture;
-
-    private Day day;
-
-    private Reservation rsv;
-
-    public static ReservationLecture createReservationLecture(Date date, ClassroomLecture cl, Day day, Reservation rsv) {
-        ReservationLecture rl = new ReservationLecture();
-        rl.setRlDate(date);
-        rl.setClassroomLecture(cl);
-        rl.setDay(day);
-        rl.setRsv(rsv);
-        return rl;
-    }
-
 }

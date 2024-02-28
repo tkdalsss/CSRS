@@ -19,7 +19,7 @@
     <div th:replace="~{fragments/bodyHeader::bodyHeader}"/>
     <!-- 개인 정보 -->
     <div>
-        <p th:text="${member.name}"></p>
+        <p th:text="${member.username}"></p>
         <p th:text="${member.studentId}"></p>
         <p th:text="${member.major}"></p>
     </div>
@@ -28,7 +28,7 @@
     <div>
         <div style="display:flex; margin-bottom: 15px;">
             <h3>수업 정보</h3>
-            <button class="btn btn-secondary" type="button" th:href="@{/lecture/register}"
+            <button class="btn btn-secondary" type="button" id="register"
                     style="justify-content: center; margin-left:50px;">수업 추가
             </button>
         </div>
@@ -36,6 +36,7 @@
             <thead>
             <tr>
                 <th>강의명</th>
+                <th>교수명</th>
                 <th>강의실</th>
                 <th>강의 요일</th>
                 <th>강의 시작시간</th>
@@ -44,8 +45,9 @@
             </thead>
             <tbody>
             <tr th:each="lecture : ${member.lectures}">
-                <td th:text="${lecture.className}"></td>
-                <td th:text="${lecture.classroomNum}"></td>
+                <td th:text="${lecture.lectureName}"></td>
+                <td th:text="${lecture.instructorName}"></td>
+                <td th:text="${lecture.classroom.classroomName}"></td>
                 <td>
                     <p th:text="${lecture.day1}"></p>
                     <p th:text="${lecture.day2}"></p>
@@ -61,3 +63,8 @@
 </div>
 </body>
 </html>
+<script>
+    document.querySelector("#register").addEventListener("click", () => {
+        window.location.href = "/lecture/register";
+    });
+</script>

@@ -1,7 +1,8 @@
 package csrs.demo.service;
 
 import csrs.demo.dto.Lecture;
-import csrs.demo.repository.LectureRepository;
+import csrs.demo.repository.classroom.ClassroomRepository;
+import csrs.demo.repository.lecture.LectureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

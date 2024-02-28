@@ -18,16 +18,11 @@ public class Student {
     @GeneratedValue
     private Long id;
 
-    private String name;
+    private String username;
     private String studentId; // 학번
     private String password;
     private Major major;
-    private LocalDateTime createdAt;
-
-    // OAuth2 추가
-//    @Enumerated(EnumType.STRING)
-//    @Column(nullable = false)
-//    private Role role;
+//    private LocalDateTime createdAt;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "StudentLecture", joinColumns = @JoinColumn(name = "student_id"),
@@ -37,14 +32,17 @@ public class Student {
     public static Student createStudent(String name, String studentId, String password, Major major) {
         Student student = new Student();
 
-        student.setName(name);
+        student.setUsername(name);
         student.setStudentId(studentId);
         student.setPassword(password);
         student.setMajor(major);
-        student.setCreatedAt(LocalDateTime.now());
-//        student.setRole(role);
+//        student.setCreatedAt(LocalDateTime.now());
 
         return student;
+    }
+
+    public void addLecture(Lecture lecture) {
+        lectures.add(lecture);
     }
 
 }

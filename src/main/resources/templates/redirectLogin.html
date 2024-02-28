@@ -18,7 +18,7 @@
 <body>
 <div class="container">
     <div th:replace="~{fragments/bodyHeader::bodyHeader}"/>
-    <form role="form" th:action="|/home/login?redirectURL=/${redirectURL1}/${redirectURL2}|" th:object="${loginForm}"
+    <form role="form" th:action="|/login?redirectURL=/${redirectURL1}/${redirectURL2}|" th:object="${loginForm}"
           method="post">
         <div class="form-group">
             <label th:for="studentId">학번</label>

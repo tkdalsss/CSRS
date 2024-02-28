@@ -24,8 +24,8 @@ import javax.naming.Binding;
 @Slf4j
 public class HomeController {
 
-    private final StudentService studentService;
-    private final AdminService adminService;
+//    private final StudentService studentService;
+//    private final AdminService adminService;
 
     @GetMapping
     public String home() {
@@ -36,7 +36,7 @@ public class HomeController {
     public String memberHome(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Student loginMember,
                              Model model) {
         model.addAttribute("member", loginMember);
-        return "home/memberHome";
+        return "/home/memberHome";
     }
 
     @GetMapping("/admin")
@@ -44,40 +44,6 @@ public class HomeController {
                             Model model) {
         model.addAttribute("admin", admin);
         return "/home/adminHome";
-    }
-
-    @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("loginForm", new LoginForm());
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String login(@Valid @ModelAttribute LoginForm loginForm, BindingResult result,
-                        HttpServletRequest request) {
-        if (result.hasErrors()) {
-            return "login";
-        }
-
-        HttpSession session = request.getSession();
-
-        // Admin login
-        Admin admin = adminService.loginAdmin(loginForm.getStudentId(), loginForm.getPassword());
-        if (admin != null) {
-            session.setAttribute(SessionConst.ADMIN, admin);
-            return "redirect:/home/admin";
-        }
-
-        // Member login
-        Student loginMember = studentService.login(loginForm.getStudentId(), loginForm.getPassword());
-        if (loginMember == null) {
-            result.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
-            return "login";
-        }
-
-        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
-
-        return "redirect:/home/member";
     }
 
     // TODO
@@ -121,17 +87,5 @@ public class HomeController {
 //
 //        return "redirect:" + redirectURL1 + redirectURL2;
 //    }
-
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request) {
-
-        // 세션을 찾아서 사용하는 시점에는 'create:false' 옵션 사용
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
-
-        return "redirect:/home";
-    }
 
 }

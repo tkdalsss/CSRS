@@ -24,7 +24,7 @@ public class ClassroomService {
         return repository.classrooms();
     }
 
-    public Classroom findById(int crNum) {
-        return repository.findById(crNum);
+    public Classroom findById(String crName) {
+        return repository.findById(crName);
     }
 }

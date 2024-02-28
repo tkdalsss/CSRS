@@ -24,6 +24,7 @@
             <tr>
                 <th>Select</th>
                 <th>강의명</th>
+                <th>교수명</th>
                 <th>강의실</th>
                 <th>강의 요일</th>
                 <th>강의 시작시간</th>
@@ -33,10 +34,11 @@
             <tbody>
             <tr th:each="lecture : ${lectures}">
                 <td>
-                    <input type="radio" th:value="${lecture.id}" th:name="lectureId">
+                    <input type="radio" th:value="${lecture.lecture_id}" th:name="lectureId">
                 </td>
-                <td th:text="${lecture.className}"></td>
-                <td th:text="${lecture.classroomNum}"></td>
+                <td th:text="${lecture.lectureName}"></td>
+                <td th:text="${lecture.instructorName}"></td>
+                <td th:text="${lecture.classroom.classroomName}"></td>
                 <td>
                     <p th:text="${lecture.day1}"></p>
                     <p th:text="${lecture.day2}"></p>

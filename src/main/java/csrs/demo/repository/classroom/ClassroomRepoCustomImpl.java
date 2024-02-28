@@ -2,6 +2,7 @@ package csrs.demo.repository.classroom;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import csrs.demo.dto.Classroom;
+import csrs.demo.dto.Lecture;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -20,9 +21,13 @@ public class ClassroomRepoCustomImpl implements ClassroomRepoCustom {
     }
 
     @Override
-    public Classroom findById(int num) {
+    public Classroom findById(String name) {
         return factory.selectFrom(classroom)
-                .where(classroom.crNum.eq(num))
+                .where(classroom.classroomName.eq(name))
                 .fetchOne();
+    }
+
+    public void addLecture(Lecture lc) {
+
     }
 }

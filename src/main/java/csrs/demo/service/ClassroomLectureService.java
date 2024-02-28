@@ -4,20 +4,17 @@ import csrs.demo.dto.ClassroomLecture;
 import csrs.demo.repository.classroom.ClassroomLectureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ClassroomLectureService {
 
-    private final ClassroomLectureRepository repository;
+    private final ClassroomLectureRepository clr;
 
+    @Transactional
     public void save(ClassroomLecture cl) {
-        repository.save(cl);
-    }
-
-    public List<ClassroomLecture> findAll() {
-        return repository.findAll();
+        clr.save(cl);
     }
 }
